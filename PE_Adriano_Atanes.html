@@ -216,7 +216,7 @@
 
   .flow-steps {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 12px;
     position: relative;
   }
@@ -437,6 +437,102 @@
     border: 1px solid var(--muted);
   }
 
+  /* === BÔNUS === */
+  .bonus-block {
+    margin: 96px 0;
+    padding: 64px 48px;
+    background: var(--accent);
+    color: var(--paper);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bonus-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 0);
+    background-size: 24px 24px;
+    pointer-events: none;
+  }
+
+  .bonus-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--paper);
+    opacity: 0.7;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .bonus-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 42px;
+    line-height: 1.05;
+    margin-bottom: 16px;
+    letter-spacing: -0.025em;
+    max-width: 700px;
+    position: relative;
+  }
+
+  .bonus-title em { font-style: italic; }
+
+  .bonus-lede {
+    max-width: 620px;
+    font-size: 17px;
+    line-height: 1.55;
+    margin-bottom: 40px;
+    color: rgba(244, 241, 234, 0.9);
+    position: relative;
+  }
+
+  .bonus-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    position: relative;
+  }
+
+  .bonus-card {
+    background: rgba(10, 10, 15, 0.18);
+    border: 1px solid rgba(244, 241, 234, 0.25);
+    padding: 24px 20px;
+    transition: all 0.3s ease;
+  }
+
+  .bonus-card:hover {
+    background: var(--ink);
+    transform: translateY(-4px);
+  }
+
+  .bonus-card-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--paper);
+    opacity: 0.6;
+    margin-bottom: 12px;
+  }
+
+  .bonus-card-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .bonus-card-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(244, 241, 234, 0.85);
+  }
+
   /* === FOOTER === */
   footer {
     margin-top: 160px;
@@ -483,6 +579,8 @@
     .briefing-grid { grid-template-columns: 1fr; }
     .flow-steps { grid-template-columns: repeat(2, 1fr); }
     .flow { padding: 40px 24px; }
+    .bonus-grid { grid-template-columns: 1fr 1fr; }
+    .bonus-block { padding: 40px 24px; }
   }
 </style>
 </head>
@@ -502,10 +600,14 @@
         <li><a href="#bloco-01"><span class="num">01</span><span>Briefing</span></a></li>
         <li><a href="#bloco-02"><span class="num">02</span><span>Análise da Concorrência</span></a></li>
         <li><a href="#bloco-03"><span class="num">03</span><span>Análise de Mercado</span></a></li>
+        <li><a href="#bloco-04"><span class="num">04</span><span>Jornada do Cliente</span></a></li>
         <li><a href="#bloco-05"><span class="num">05</span><span>Gênesis do Líder</span></a></li>
         <li><a href="#bloco-06"><span class="num">06</span><span>Ideação de Infoprodutos</span></a></li>
-        <li><a href="#bloco-07"><span class="num">07</span><span>Posicionamento</span></a></li>
-        <li><a href="#bloco-08"><span class="num">08</span><span>Estrutura de Postagens</span></a></li>
+        <li><a href="#bloco-07"><span class="num">07</span><span>Arquitetura do Funil</span></a></li>
+        <li><a href="#bloco-08"><span class="num">08</span><span>Posicionamento</span></a></li>
+        <li><a href="#bloco-09"><span class="num">09</span><span>Estrutura de Postagens</span></a></li>
+        <li><a href="#bloco-10"><span class="num">10</span><span>Projeções &amp; KPIs</span></a></li>
+        <li><a href="#bonus"><span class="num">★</span><span>Bônus Inclusos</span></a></li>
         <li><a href="#consolidacao"><span class="num">+</span><span>Consolidação</span></a></li>
       </ol>
     </nav>
@@ -525,7 +627,7 @@
       <h1>O caminho<br>de Atanes <em>até a autoridade</em>.</h1>
 
       <p class="hero-lede">
-        Este é o mapa do trabalho que vamos construir juntos — bloco por bloco, da escuta inicial até a estrutura de conteúdo que vai posicionar o Adriano como referência em IA aplicada ao desenvolvimento. Cada etapa abaixo gera um documento dedicado.
+        Este é o mapa do trabalho que vamos construir juntos — bloco por bloco, da escuta inicial até a estrutura de conteúdo, funil e projeções que vão posicionar o Adriano como referência em IA aplicada ao desenvolvimento. Cada etapa abaixo gera um documento dedicado.
       </p>
 
       <div class="hero-tags">
@@ -539,17 +641,21 @@
 
     <!-- ===== FLOW ===== -->
     <section class="flow">
-      <div class="flow-label">As 8 etapas do processo</div>
+      <div class="flow-label">As 10 etapas do processo</div>
       <h3 class="flow-title">Da escuta à <em>estrutura de execução.</em></h3>
 
       <div class="flow-steps">
         <div class="flow-step"><div class="flow-step-num">01</div><div class="flow-step-name">Briefing</div></div>
         <div class="flow-step"><div class="flow-step-num">02</div><div class="flow-step-name">Concorrência</div></div>
         <div class="flow-step"><div class="flow-step-num">03</div><div class="flow-step-name">Mercado</div></div>
+        <div class="flow-step"><div class="flow-step-num">04</div><div class="flow-step-name">Jornada do Cliente</div></div>
         <div class="flow-step"><div class="flow-step-num">05</div><div class="flow-step-name">Gênesis</div></div>
         <div class="flow-step"><div class="flow-step-num">06</div><div class="flow-step-name">Infoprodutos</div></div>
-        <div class="flow-step"><div class="flow-step-num">07</div><div class="flow-step-name">Posicionamento</div></div>
-        <div class="flow-step"><div class="flow-step-num">08</div><div class="flow-step-name">Postagens</div></div>
+        <div class="flow-step"><div class="flow-step-num">07</div><div class="flow-step-name">Funil</div></div>
+        <div class="flow-step"><div class="flow-step-num">08</div><div class="flow-step-name">Posicionamento</div></div>
+        <div class="flow-step"><div class="flow-step-num">09</div><div class="flow-step-name">Postagens</div></div>
+        <div class="flow-step"><div class="flow-step-num">10</div><div class="flow-step-name">Projeções &amp; KPIs</div></div>
+        <div class="flow-step"><div class="flow-step-num">★</div><div class="flow-step-name">Bônus</div></div>
         <div class="flow-step"><div class="flow-step-num">+</div><div class="flow-step-name">Consolidação</div></div>
       </div>
     </section>
@@ -653,6 +759,35 @@
       </div>
     </section>
 
+    <!-- ===== BLOCO 04 — JORNADA DO CLIENTE ===== -->
+    <section class="section" id="bloco-04">
+      <div class="section-head">
+        <div class="section-num">04</div>
+        <div class="section-head-titles">
+          <h2 class="section-title">Jornada do Cliente</h2>
+          <p class="section-subtitle">Quem é, o que sente, como decide</p>
+        </div>
+        <div class="section-status-badge">
+          <span class="status-pill next">Próxima etapa</span>
+        </div>
+      </div>
+
+      <div class="section-body">
+        <p class="section-intro">
+          O retrato vivo de quem o Adriano fala. Três personas detalhadas com dores, desejos, objeções e o caminho real que cada uma percorre — da descoberta da marca até a decisão de compra.
+        </p>
+
+        <ul class="item-list">
+          <li><span><strong>Mapeamento de público-alvo</strong> — perfis demográficos, profissionais e comportamentais.</span></li>
+          <li><span><strong>Dores, desejos e objeções</strong> — o que tira o sono, o que move e o que trava cada perfil.</span></li>
+          <li><span><strong>3 personas detalhadas</strong> — nome, contexto, gatilhos de compra e linguagem de cada uma.</span></li>
+          <li><span><strong>Jornada de compra estruturada</strong> — descoberta, consideração, decisão e pós-compra.</span></li>
+          <li><span><strong>Pontos de contato e decisão</strong> — onde a marca precisa estar em cada estágio.</span></li>
+          <li><span><strong>Estratégias para o ciclo de vendas</strong> — como acelerar do interesse à conversão.</span></li>
+        </ul>
+      </div>
+    </section>
+
     <!-- ===== BLOCO 05 ===== -->
     <section class="section" id="bloco-05">
       <div class="section-head">
@@ -712,10 +847,39 @@
       </div>
     </section>
 
-    <!-- ===== BLOCO 07 ===== -->
+    <!-- ===== BLOCO 07 — ARQUITETURA DO FUNIL ===== -->
     <section class="section" id="bloco-07">
       <div class="section-head">
         <div class="section-num">07</div>
+        <div class="section-head-titles">
+          <h2 class="section-title">Arquitetura do Funil</h2>
+          <p class="section-subtitle">O caminho desenhado da atenção à compra</p>
+        </div>
+        <div class="section-status-badge">
+          <span class="status-pill next">Próxima etapa</span>
+        </div>
+      </div>
+
+      <div class="section-body">
+        <p class="section-intro">
+          A engenharia que conecta tráfego, conteúdo e venda. Define o canal principal de aquisição, mapeia gargalos, estrutura lançamentos e desenha as sequências de e-mail que nutrem o lead até a conversão.
+        </p>
+
+        <ul class="item-list">
+          <li><span><strong>Canal principal de aquisição</strong> — onde o esforço de tráfego e conteúdo se concentra primeiro.</span></li>
+          <li><span><strong>Funil de vendas completo</strong> — topo, meio e fundo desenhados com gatilhos e métricas.</span></li>
+          <li><span><strong>Diagnóstico de gargalos</strong> — onde o funil perde gente hoje e como destravar.</span></li>
+          <li><span><strong>Planejamento de lançamento</strong> — janelas, fases, gatilhos de urgência e estrutura de oferta.</span></li>
+          <li><span><strong>Estrutura de e-mail marketing</strong> — listas, segmentações e cadência de envios.</span></li>
+          <li><span><strong>Fluxos de nutrição</strong> — sequências automatizadas que aquecem o lead até a venda.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== BLOCO 08 — POSICIONAMENTO ===== -->
+    <section class="section" id="bloco-08">
+      <div class="section-head">
+        <div class="section-num">08</div>
         <div class="section-head-titles">
           <h2 class="section-title">Posicionamento para Redes Sociais</h2>
           <p class="section-subtitle">Como cada canal trabalha para a autoridade</p>
@@ -741,10 +905,10 @@
       </div>
     </section>
 
-    <!-- ===== BLOCO 08 ===== -->
-    <section class="section" id="bloco-08">
+    <!-- ===== BLOCO 09 — ESTRUTURA DE POSTAGENS ===== -->
+    <section class="section" id="bloco-09">
       <div class="section-head">
-        <div class="section-num">08</div>
+        <div class="section-num">09</div>
         <div class="section-head-titles">
           <h2 class="section-title">Estrutura de Postagens</h2>
           <p class="section-subtitle">O método aplicado, dia após dia</p>
@@ -767,6 +931,66 @@
           <li><span><strong>Estratégia de Stories</strong> — cadência semanal e tipos de conteúdo por dia.</span></li>
           <li><span><strong>Lives e Conteúdo Fixado</strong> — frequência, formato e os posts permanentes do perfil.</span></li>
         </ul>
+      </div>
+    </section>
+
+    <!-- ===== BLOCO 10 — PROJEÇÕES & KPIs ===== -->
+    <section class="section" id="bloco-10">
+      <div class="section-head">
+        <div class="section-num">10</div>
+        <div class="section-head-titles">
+          <h2 class="section-title">Projeções &amp; KPIs</h2>
+          <p class="section-subtitle">A régua que mede o crescimento</p>
+        </div>
+        <div class="section-status-badge">
+          <span class="status-pill next">Próxima etapa</span>
+        </div>
+      </div>
+
+      <div class="section-body">
+        <p class="section-intro">
+          O lado-número da estratégia. Projeção de faturamento, ROI esperado e indicadores semanais que permitem ajustar a rota sem perder o ano. É o que transforma intenção em meta gerenciável.
+        </p>
+
+        <ul class="item-list">
+          <li><span><strong>Projeções financeiras e ROI</strong> — faturamento esperado por produto e por trimestre.</span></li>
+          <li><span><strong>Plano de ação priorizado</strong> — sequência de execução com prazos e responsáveis.</span></li>
+          <li><span><strong>KPIs de acompanhamento</strong> — indicadores de conteúdo, funil e vendas para revisão semanal.</span></li>
+          <li><span><strong>Apresentação executiva</strong> — síntese do plano em formato pronto para decisão.</span></li>
+          <li><span><strong>Mapa do negócio digital</strong> — visão única do ecossistema (canais, produtos, funil, métricas).</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== BÔNUS INCLUSOS ===== -->
+    <section class="bonus-block" id="bonus">
+      <div class="bonus-label">Bônus inclusos</div>
+      <h3 class="bonus-title">Além do PE — <em>uma marca pronta para sair na rua.</em></h3>
+      <p class="bonus-lede">
+        Junto do Planejamento Estratégico, o Adriano leva o pacote completo de identidade visual e materiais institucionais. Tudo pensado para que o lançamento da nova fase já chegue com cara de marca consolidada.
+      </p>
+
+      <div class="bonus-grid">
+        <div class="bonus-card">
+          <div class="bonus-card-num">★ 01</div>
+          <h4 class="bonus-card-title">Identidade Visual</h4>
+          <p class="bonus-card-desc">Logo, paleta, tipografia e sistema visual completo da marca pessoal.</p>
+        </div>
+        <div class="bonus-card">
+          <div class="bonus-card-num">★ 02</div>
+          <h4 class="bonus-card-title">Manual de Marca</h4>
+          <p class="bonus-card-desc">Guia de uso dos elementos visuais — regras, usos corretos e variações.</p>
+        </div>
+        <div class="bonus-card">
+          <div class="bonus-card-num">★ 03</div>
+          <h4 class="bonus-card-title">Aplicações Institucionais</h4>
+          <p class="bonus-card-desc">Assinatura de e-mail, cartão, papelaria e templates de apresentação.</p>
+        </div>
+        <div class="bonus-card">
+          <div class="bonus-card-num">★ 04</div>
+          <h4 class="bonus-card-title">Kit Digital Completo</h4>
+          <p class="bonus-card-desc">Capas de destaque, templates de feed, banners de canal e arte de avatar.</p>
+        </div>
       </div>
     </section>
 
